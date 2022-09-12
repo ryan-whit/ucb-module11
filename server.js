@@ -1,6 +1,9 @@
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
+const {
+	v1: uuidv1
+} = require('uuid');
 
 const PORT = process.env.PORT || 3001;
 
@@ -21,7 +24,15 @@ app.get('/notes', (req, res) => {
 app.get('/api/notes', (req, res) => {
 	console.info(`${req.method} request received to get all the notes.`);
 	const db = fs.readFileSync(path.join(__dirname, 'db/db.json'), 'utf-8');
-	res.json(JSON.parse(db));
+	// TODO: docs on why values and not straight JSON
+	res.json(Object.values(JSON.parse(db)));
+});
+
+// GET Route for database notes
+app.get('/api/notes/:id', (req, res) => {
+	console.info(`${req.method} request received to get all the notes.`);
+	const db = fs.readFileSync(path.join(__dirname, 'db/db.json'), 'utf-8');
+	res.json(JSON.parse(db)[req.params.id]);
 });
 
 /**
@@ -37,17 +48,32 @@ app.get('/api/notes', (req, res) => {
 
 /**
  *  Function to read data from a given a file and append some content
- *  @param {object} content The content you want to append to the file.
+ *  @param {object} newNote The note you want to append to the file.
  *  @param {string} file The path to the file you want to save to.
  *  @returns {void} Nothing
  */
-const readAndAppend = (content, file) => {
+const readAndAppend = (newNote, file) => {
   fs.readFile(file, 'utf8', (err, data) => {
     if (err) {
       console.error(err);
     } else {
       const parsedData = JSON.parse(data);
-      parsedData.push(content);
+      // parsedData.push(newNote);
+			const uid = uuidv1();
+			newNote.id = uid;
+			parsedData[uid] = newNote;
+      writeToFile(file, parsedData);
+    }
+  });
+};
+
+const readAndDelete = (id, file) => {
+  fs.readFile(file, 'utf8', (err, data) => {
+    if (err) {
+      console.error(err);
+    } else {
+      const parsedData = JSON.parse(data);
+			delete parsedData[id];
       writeToFile(file, parsedData);
     }
   });
@@ -60,17 +86,29 @@ app.post('/api/notes', (req, res) => {
 	const { title, text } = req.body;
 
 	if (req.body) {
+		// Unique ID is assigned at write time
 		const newNote = {
 			title,
 			text,
-			// tip_id: uuid(),
 		};
 
 		readAndAppend(newNote, './db/db.json');
 		// TODO: return the new note?
 		res.json(`Note added successfully`);
 	} else {
-		res.error('Error in adding tip');
+		res.error('Error in adding note');
+	}
+});
+
+// DELETE Route for database notes
+app.delete('/api/notes/:id', (req, res) => {
+	console.info(`${req.method} request received to delete a note.`);
+
+	if (req.params.id) {
+		readAndDelete(req.params.id, './db/db.json');
+		res.json(`Note deleted successfully`);
+	} else {
+		res.error('Error in deleting note');
 	}
 });
 
