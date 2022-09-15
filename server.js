@@ -117,7 +117,6 @@ app.post('/api/notes', (req, res) => {
 		};
 
 		readAndAppend(newNote, './db/db.json');
-		// TODO: return the new note?
 		res.json(newNote);
 	} else {
 		throw new Error('Error in adding note');
@@ -137,7 +136,7 @@ app.delete('/api/notes/:id', (req, res) => {
 });
 
 // Wildcard route to return main HTML content.
-app.get('*', (req, res) =>
+app.get('*', (_req, res) =>
   res.sendFile(path.join(__dirname, 'public/index.html'))
 );
 
