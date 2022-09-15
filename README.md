@@ -1,4 +1,4 @@
-# ucb-module11
+# Note Taker (ucb-module-11)
 
 ## Description
 
@@ -12,11 +12,9 @@ UC Berkeley Module 11 Challenge.
 
 Repo path: https://github.com/ryan-whit/ucb-module11
 
-Heroku deployment location: TODO
+Heroku deployment location: https://guarded-sea-39688.herokuapp.com/
 
 ## Table of Contents (Optional)
-
-If your README is long, add a table of contents to make it easy for users to find what they need.
 
 - [Installation](#installation)
 - [Usage](#usage)
