@@ -57,11 +57,12 @@ You're good to go!
 
 ## Credits
 
-This webpage leverages front-end code provided by the UC Berkeley Bootcamp.
+This webpage leverages front-end code provided by the [UC Berkeley Bootcamp][1].
 
-This README was inspired by the example provided by the [coding boot camp README guide][1].
+This README was inspired by the example provided by the [coding boot camp README guide][2].
 
-[1]: https://coding-boot-camp.github.io/full-stack/github/professional-readme-guide
+[1]: https://github.com/coding-boot-camp/miniature-eureka
+[2]: https://coding-boot-camp.github.io/full-stack/github/professional-readme-guide
 
 ## License
 
