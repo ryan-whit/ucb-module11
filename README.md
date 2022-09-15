@@ -14,7 +14,7 @@ Repo path: https://github.com/ryan-whit/ucb-module11
 
 Heroku deployment location: https://guarded-sea-39688.herokuapp.com/
 
-## Table of Contents (Optional)
+## Table of Contents
 
 - [Installation](#installation)
 - [Usage](#usage)
