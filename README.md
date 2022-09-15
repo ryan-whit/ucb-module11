@@ -53,13 +53,9 @@ You're good to go!
 
 ## Usage
 
-Provide instructions and examples for use. Include screenshots as needed.
+(click on gif to go to full video)
 
-To add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it. Then, using the relative filepath, add it to your README using the following syntax:
-
-    ```md
-    ![alt text](assets/images/screenshot.png)
-    ```
+[![Video of the app demo.](./data/app_demo.gif)](https://drive.google.com/file/d/1ZhuCKv8VWsmXe97hchflVdeYlKNdR6lP/view?usp=sharing)
 
 ## Credits
 
